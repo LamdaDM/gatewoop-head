@@ -3,7 +3,7 @@ import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { DB_MySQL } from 'src/config/mysql.conn';
 import { CommentsRepository } from 'src/comments/repositories/comments.repository';
-import { UsersRepository } from './users.repository';
+import { UsersRepository } from './repositories/users.repository';
 
 @Module({
   controllers: [UsersController],
