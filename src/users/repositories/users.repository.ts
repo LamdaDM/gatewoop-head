@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { DBRes, DB_MySQL } from "src/config/mysql.conn";
+import { DBRes, DB_MySQL } from "src/config/mysql.conn.provider";
 
 @Injectable()
 export class UsersRepository {

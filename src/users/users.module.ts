@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
-import { DB_MySQL } from 'src/config/mysql.conn';
+import { DB_MySQL } from 'src/config/mysql.conn.provider';
 import { CommentsRepository } from 'src/comments/repositories/comments.repository';
 import { UsersRepository } from './repositories/users.repository';
+import { CommonProvidersModule } from 'src/config/providers.module';
 
 @Module({
   controllers: [UsersController],
+  imports: [CommonProvidersModule],
   providers: [
     UsersService, 
-    DB_MySQL, 
-    UsersRepository, 
-    CommentsRepository,
+    UsersRepository,
   ]
 })
 export class UsersModule {}

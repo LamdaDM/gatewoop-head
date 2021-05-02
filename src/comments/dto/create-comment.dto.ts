@@ -1,5 +1,15 @@
 import { IsBoolean, IsInt, IsISO8601, IsNotEmpty, MaxLength, MinLength } from 'class-validator'
 
+/**
+ * @field poster_id Int
+ * @field parent_thread_id Int
+ * @field parent_comment_id Int
+ * @field alias String
+ * @field origin_hidden Boolean
+ * @field comment_title String
+ * @field content String
+ * @field timestamp DateTime(ISO-8601)
+ */
 export class CreateCommentDTO {
     /**
      * fk ON user_id;
@@ -53,7 +63,7 @@ export class CreateCommentDTO {
     @IsNotEmpty()
     @MinLength(1)
     @MaxLength(128)
-    title: string;
+    comment_title: string;
 
     /**
      * Body of a given comment, one per comment.
