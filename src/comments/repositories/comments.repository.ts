@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { OkPacket, ResultSetHeader, RowDataPacket } from "mysql2";
 import { DBRes, DB_MySQL } from "src/config/mysql.conn.provider";
 import { CreateCommentDTO } from "../dto/create-comment.dto";
 import { EditCommentDTO } from "../dto/edit-comment.dto";
@@ -8,15 +9,15 @@ export class CommentsRepository {
     constructor(private connection_mysql: DB_MySQL){}
     private readonly client = this.connection_mysql.conn;
 
-    async editComment(dto: EditCommentDTO): Promise<DBRes> {
-        const [rows] = await this.client.execute('');
+    async editCommentByCommentID(COMMENT_ID: number, DTO: EditCommentDTO): Promise<OkPacket> {
+        const [rows] = await this.client.execute<OkPacket>('');
 
-        return rows
+        return rows;
     }
 
-    async addCommentToExistingThread(dto: CreateCommentDTO): Promise<DBRes> {
-        const [rows] = await this.client.execute('');
+    async InsertCommentByThreadID(THREAD_ID: number, DTO: CreateCommentDTO): Promise<OkPacket> {
+        const [rows] = await this.client.execute<OkPacket>('');
 
-        return rows
+        return rows;
     }
 }

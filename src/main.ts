@@ -10,12 +10,14 @@ async function bootstrap() {
   );
 
   app.useGlobalPipes(
-    new ValidationPipe({
-      disableErrorMessages: false
+    new ValidationPipe({ 
+      disableErrorMessages: false,
+      forbidUnknownValues: true,
+      validationError: { target: true, value: true },
     }),
-    new ParseIntPipe()
   );
 
   await app.listen(3000);
 }
+
 bootstrap();

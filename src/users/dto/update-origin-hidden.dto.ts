@@ -1,11 +1,7 @@
 import { IsBoolean } from "class-validator";
+import { User } from "../model/user.model";
 
-export class UpdateOriginHiddenDTO {
-    /**
-     * Flag for the client to check when comment's poster's alias is empty.
-     * If true while the alias is empty, displays "..." as their name.
-     * DEFAULT=false;
-     */
+export class UpdateOriginHiddenDTO implements User {
      @IsBoolean()
      origin_hidden: boolean;
 }

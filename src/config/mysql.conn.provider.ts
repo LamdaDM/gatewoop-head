@@ -17,3 +17,5 @@ export type DBRes = RowDataPacket[]     |
                     OkPacket            |
                     OkPacket[]          |
                     ResultSetHeader     
+
+export type PostRes = number | OkPacket
