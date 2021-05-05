@@ -5,7 +5,7 @@ export interface User {
     user_id?: number;
 
     /**
-    * PK unique identification string.
+    * UNIQUE INDEX identification string.
     * Intended for user's login process.
     * LENGTH: 4 - 60
     * NON-NULLABLE
