@@ -3,7 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CommentsModule } from './comments/comments.module';
-import { CommonProvidersModule } from './config/providers.module';
+import { CommonProvidersModule } from './config/common.providers.module';
+import { envPaths } from './paths.env.constants';
 import { ThreadsModule } from './threads/threads.module';
 import { UsersModule } from './users/users.module';
 
@@ -15,7 +16,7 @@ import { UsersModule } from './users/users.module';
     CommonProvidersModule, 
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env', '.env.gla2h.params'],
+      envFilePath: envPaths,
     })
   ],
   controllers: [AppController],

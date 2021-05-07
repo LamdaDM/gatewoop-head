@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ThreadsService } from './threads.service';
 import { ThreadsController } from './threads.controller';
-import { CommonProvidersModule } from 'src/config/providers.module';
+import { CommonProvidersModule } from 'src/config/common.providers.module';
 import { ThreadsRepository } from './repositories/threads.repository';
 
 @Module({

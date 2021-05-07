@@ -1,4 +1,4 @@
-import { IsBoolean, IsInt, IsISO8601, IsNotEmpty, MaxLength, MinLength } from 'class-validator'
+import { IsInt, IsISO8601, IsNotEmpty, MaxLength, MinLength } from 'class-validator'
 import { Comment } from '../model/comment.model';
 
 /**
@@ -22,12 +22,8 @@ export class CreateCommentDTO implements Comment{
     @IsInt()
     parent_comment_id: number;
 
-    @MinLength(0)
     @MaxLength(45)
     alias: string;
-
-    @IsBoolean()
-    origin_hidden: boolean;
 
     @IsNotEmpty()
     @MinLength(1)

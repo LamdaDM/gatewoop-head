@@ -12,8 +12,8 @@ lerna-debug.log*
 
 # OS
 .DS_Store
-.env
-.env.gla2h.params
+*.env
+*.constants.ts
 
 # Tests
 /coverage
