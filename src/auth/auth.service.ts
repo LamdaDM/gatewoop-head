@@ -11,8 +11,8 @@ export class AuthService {
         private readonly jwtService: JwtService
     ){}
 
-    async validate(id: string, pwInput: string) { 
-        const user = await this.usersService.getPasswordByX(id);
+    async validate(identification: string, pwInput: string) { 
+        const user = await this.usersService.getUserProfileByNameMinimal(identification);
 
         if(user && await this.hashService.validateAgainstHash(pwInput, user.password)){ 
             const {password, ...results} = user;

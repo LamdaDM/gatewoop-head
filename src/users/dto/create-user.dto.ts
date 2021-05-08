@@ -3,12 +3,12 @@ import { User } from "../model/user.model";
 
 export class CreateUserDTO implements User{
     @MinLength(4)
-    @MaxLength(32)
+    @MaxLength(60)
     @IsNotEmpty()
-    name: string;
+    iden_name: string;
 
     @MinLength(8)
-    @MaxLength(32)
+    @MaxLength(60)
     @IsNotEmpty()
     password: string;
 

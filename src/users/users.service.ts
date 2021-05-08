@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { RowDataPacket } from 'mysql2';
 import { User } from './model/user.model';
 import { UsersRepository } from './repositories/users.repository';
 
@@ -11,8 +12,16 @@ export class UsersService {
 
     async getUserByID() {}
 
-    async getPasswordByX(stdin: string): Promise<User> {
-        return { user_id: 1, password: 'pw' }
+    async getUserProfileByNameMinimal(identification: string): Promise<User> {
+        const res: RowDataPacket[] = await this.userRepository.selectUserCredentialsByName(identification);
+        
+        if(!res) { throw new Error(`No user found with the name '${identification}'.`); }
+        
+        return {
+            user_id: res['user_id'],
+            iden_name: res['iden_name'],
+            password: res['password']
+        };
     }
 
     async getUsersByTenByIDAsc() {}

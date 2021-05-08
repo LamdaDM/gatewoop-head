@@ -1,7 +1,7 @@
 import { IsNotEmpty } from "class-validator";
-import { Following } from "./following.model";
+import { Following } from "../model/following.model";
 
-export class AddFollowerDTO implements Following {
+export class ChangeFollowerDTO implements Following {
     @IsNotEmpty()
     sub_id: number;
 
