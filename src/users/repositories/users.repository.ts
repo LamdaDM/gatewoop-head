@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { OkPacket, RowDataPacket } from "mysql2";
 import { DB_MySQL } from "src/config/mysql.conn.provider";
+import { HelperRepository } from "src/helpers/helper.repository";
 import { ChangeFollowerDTO } from "../dto/change-follower.dto";
 import { CreateUserDTO } from "../dto/create-user.dto";
 import { UpdateOriginHiddenDTO } from "../dto/update-origin-hidden.dto";
@@ -10,8 +11,8 @@ import { UpdatePasswordDTO } from "../dto/update-password.dto";
  * Repository: Handles the logic of reading and writing data on disk.
  */
 @Injectable()
-export class UsersRepository {
-    constructor(private readonly connection_mysql: DB_MySQL){}
+export class UsersRepository extends HelperRepository{
+    constructor(private readonly connection_mysql: DB_MySQL){ super(); }
     private readonly client = this.connection_mysql.conn;
 
     /**
@@ -72,7 +73,7 @@ export class UsersRepository {
         const [rows] = await this.client.execute<OkPacket>(
             'INSERT (iden_name, password, date_user_created) ' +
             'INTO users ' + 
-            'VALUES ?, ?, ?;',
+            `VALUES ${await super.addDynamicParams(3)};`,
             [
                 DTO.iden_name,
                 DTO.password,

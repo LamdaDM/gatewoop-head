@@ -11,7 +11,10 @@ export class CommentsController{
     @UseGuards(JwtAuthGuard)
     @Post('/:thread_id')
     async CreateComment(
-        @Param('thread_id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.BAD_REQUEST })) THREAD_ID: number,
+        @Param(
+            'thread_id', 
+            new ParseIntPipe({ errorHttpStatusCode: HttpStatus.BAD_REQUEST })
+        ) THREAD_ID: number,
         @Body() DTO: CreateCommentDTO,
     ){
         return await this.CreateComment(THREAD_ID, DTO);
@@ -20,7 +23,10 @@ export class CommentsController{
     @UseGuards(JwtAuthGuard)
     @Post('/:comment_id')
     async EditComment(
-        @Param('comment_id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.BAD_REQUEST })) comment_id: number,
+        @Param(
+            'comment_id', 
+            new ParseIntPipe({ errorHttpStatusCode: HttpStatus.BAD_REQUEST })
+        ) comment_id: number,
         @Body() dto: EditCommentDTO,
     ){}
 }

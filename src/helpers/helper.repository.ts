@@ -1,3 +1,5 @@
+import { DB_MySQL } from "src/config/mysql.conn.provider";
+
 export class HelperRepository {
     async addDynamicParams(count: number): Promise<string> {
         let parameterStr: string = "?";
