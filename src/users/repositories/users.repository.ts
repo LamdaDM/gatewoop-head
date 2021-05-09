@@ -1,11 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { OkPacket, RowDataPacket } from "mysql2";
-import { DB_MySQL } from "src/config/mysql.conn.provider";
+import { DB_MySQL } from "src/common/mysql.conn.provider";
 import { HelperRepository } from "src/helpers/helper.repository";
 import { ChangeFollowerDTO } from "../dto/change-follower.dto";
 import { CreateUserDTO } from "../dto/create-user.dto";
 import { UpdateOriginHiddenDTO } from "../dto/update-origin-hidden.dto";
 import { UpdatePasswordDTO } from "../dto/update-password.dto";
+import { UpdateDisplayNameDTO } from "../dto/update_display_name.dto";
 
 /**
  * Repository: Handles the logic of reading and writing data on disk.
@@ -78,6 +79,20 @@ export class UsersRepository extends HelperRepository{
                 DTO.iden_name,
                 DTO.password,
                 DTO.date_user_created
+            ]
+        )
+
+        return rows;
+    }
+
+    async updateUser_display_name_ByID(USER_ID: number, DTO: UpdateDisplayNameDTO): Promise<OkPacket> {
+        const [rows] = await this.client.execute<OkPacket>(
+            'UPDATE users ' +
+            'SET display_name = ? ' +
+            'WHERE user_id = ?;',
+            [
+                DTO.display_name,
+                USER_ID
             ]
         )
 

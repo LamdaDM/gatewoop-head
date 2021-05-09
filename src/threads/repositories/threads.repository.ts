@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { DB_MySQL } from "src/config/mysql.conn.provider";
+import { DB_MySQL } from "src/common/mysql.conn.provider";
 
 @Injectable()
 export class ThreadsRepository{

@@ -12,7 +12,7 @@ describe('environment', () => {
         const module: TestingModule = await Test.createTestingModule({
             imports: [ConfigModule.forRoot({
                 isGlobal: true,
-                envFilePath: 'test.env'
+                envFilePath: '.env.test'
             })]
         }).compile()
 
