@@ -10,7 +10,8 @@ export class UsersInternalService {
     async getUserProfileByNameMinimal(identification: string): Promise<User> {
         const res: RowDataPacket[] = await this.userRepository.selectUserCredentialsByName(identification);
         
-        if(!res) { throw new Error(`No user found with the name '${identification}'.`); }
+        if(!res) { throw new Error(`Connection to database failed.`); }
+        if(res.length === 0) { throw new Error(`Could not find user with name.`) }
         
         return {
             user_id: res['user_id'],

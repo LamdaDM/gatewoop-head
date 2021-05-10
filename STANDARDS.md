@@ -10,7 +10,7 @@ The fields are as follows:
 ---
 ## Repositories
 #### Responsibility
-Only for accessing and manipulating data from external DBMS.
+Only for accessing and manipulating data from external DBMS. Methods of a repository should return information packages about the data received or affected.
 
 #### Parameter casing
 All snake-cased and upper-cased.
