@@ -8,7 +8,7 @@ export class CommentsService {
     constructor(private commentsRepository: CommentsRepository){}
     
     async addCommentToExistingThread(THREAD_ID: number, DTO: CreateCommentDTO): Promise<(number | string)[]> {
-        const res = await this.commentsRepository.InsertCommentByThreadID(THREAD_ID, DTO);
+        const res = await this.commentsRepository.InsertCommentByThreadID(DTO);
 
         if(res.changedRows !== 1) { return [HttpStatus.NOT_FOUND, res.message]; }
         return [HttpStatus.CREATED, res.insertId];

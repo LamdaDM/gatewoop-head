@@ -1,12 +1,12 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { ARGON2_GLA2H_PROVIDER } from "src/common/hash.provider";
-import { UsersService } from "src/users/services/users.service";
+import { UsersInternalService } from "src/users/services/users.internal.service";
 
 @Injectable()
 export class AuthService {
     constructor(
-        private readonly usersService: UsersService,
+        private readonly usersService: UsersInternalService,
         private readonly hashService: ARGON2_GLA2H_PROVIDER,
         private readonly jwtService: JwtService
     ){}

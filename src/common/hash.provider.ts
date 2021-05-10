@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import * as argon2 from 'argon2'
-import { exec } from 'node:child_process';
-import { env } from 'node:process';
-import { promisify } from 'node:util';
+import * as argon2 from 'argon2';
+import { exec } from 'child_process';
+import { env } from 'process';
+import { promisify } from 'util';
 
 const execAsync = promisify(exec)
 
@@ -25,7 +25,7 @@ export class ARGON2_GLA2H_PROVIDER {
     async GLA2H_exec(stdin: string): Promise<Map<string, string>> {
         try{
             const {stdout, stderr} = await execAsync(
-                `$SCRIPT/gla2h '${stdin}' ${env.GLA2H_TIMED} ${env.GLA2H_BENCHMARK} ` +
+                `${env.GLA2H_PATH} '${stdin}' ${env.GLA2H_TIMED} ${env.GLA2H_BENCHMARK} ` +
                 `${parseInt(env.GLA2H_MEMCOST)} ${parseInt(env.GLA2H_PASSES)} ${parseInt(env.GLA2H_THREADS)}`
             );
 
