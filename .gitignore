@@ -12,8 +12,7 @@ lerna-debug.log*
 
 # OS
 .DS_Store
-*.env
-*.constants.ts
+*.arguments.ts
 
 # Tests
 /coverage

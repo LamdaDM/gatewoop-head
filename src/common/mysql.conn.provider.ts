@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { createPool, Pool } from "mysql2/promise";
-import { mysql2Options } from "./options/mysql2.options"
+import { mysql2_Args } from "./arguments/mysql2.arguments"
 
 /**
  * Wrapper for a pool of connections to a MySQL server.
@@ -13,5 +13,5 @@ export class DB_MySQL {
      * Connection pool to MySQL, 
      * uses mysql2Options for the pool options.
      */
-    conn: Pool = createPool(mysql2Options);
+    conn: Pool = createPool(mysql2_Args);
 }

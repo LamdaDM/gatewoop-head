@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import * as argon2 from 'argon2';
 import { exec } from 'child_process';
 import { promisify } from 'util';
-import { OptionsGLA2H } from './options/gla2h.options.interface';
+import { OptionsGLA2H } from './arguments/interfaces/gla2h.arguments.interface';
 
 const execAsync = promisify(exec)
 
@@ -37,29 +37,21 @@ export class ARGON2_GLA2H_PROVIDER {
     
     /**
      * Helper function for GLA2H_exec, 
-     * comes with default error handling and retry logic for failed attempts.
+     * comes with default error handling for failed attempts.
      * @param pw (string) password to be hashed
      * @param gla2h_options (OptionsGLA2H) arguments to pass to gla2h cli
      * @param attempts (number) how many retries to allow gla2h
      * @returns (string) hash from GLA2H_exec().get('stdout')
      */
-    async passwordHash(pw: string, gla2h_options: OptionsGLA2H, attempts: number): Promise<string> { 
-        let res: Map<string, string>
-        let retries: number = -attempts;
+    async passwordHash(pw: string, gla2h_options: OptionsGLA2H): Promise<string> { 
+        return await this.GLA2H_exec(pw, gla2h_options)
+            .then((res) => {
+                if(res.get('stderr') !== ''){ throw new Error(res.get('stderr')) }
+                else { return res.get('stdout'); }
+            })
+            .catch((err) => { throw err; })
 
-        try {
-            do {
-                retries++;
-                res = await this.GLA2H_exec(pw, gla2h_options)
-                        .catch((err) => { throw err });
-            } while(!res.get('stdout') || retries !== 0)
-
-            // TODO: res['stderr'] might be null, implement proper guards
-            if (retries === 0) {
-                throw new Error(res.get('stderr'))
-            }
-            else return res.get('stdout')
-        } catch(err) { throw err }
+        // TODO: error handling busted, re-write
     }
 
     /**

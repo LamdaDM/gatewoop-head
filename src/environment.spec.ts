@@ -1,6 +1,4 @@
-import { ConfigModule } from "@nestjs/config"
-import { Test, TestingModule } from "@nestjs/testing"
-import { env } from "process";
+import { mock_Args } from "./common/arguments/mock.arguments.safe";
 
 describe('environment', () => {
     let trStringEnvVar: string;
@@ -8,18 +6,11 @@ describe('environment', () => {
     let trBoolEnvVar: boolean;
     let trArrEnvVar: any[];
 
-    beforeEach(async () => {
-        const module: TestingModule = await Test.createTestingModule({
-            imports: [ConfigModule.forRoot({
-                isGlobal: true,
-                envFilePath: '.env.test'
-            })]
-        }).compile()
-
-        trStringEnvVar = env.TEST_S;
-        trIntEnvVar = Number(JSON.parse(env.TEST_I))
-        trBoolEnvVar = Boolean(JSON.parse(env.TEST_B));
-        trArrEnvVar = JSON.parse(env.TEST_A);
+    beforeAll(async () => {
+        trStringEnvVar = mock_Args.mStr;
+        trIntEnvVar = mock_Args.mInt;
+        trBoolEnvVar = mock_Args.mBool;
+        trArrEnvVar = mock_Args.mArr;
     })
 
     it('should equal', () => {
