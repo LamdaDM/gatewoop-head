@@ -6,6 +6,11 @@ import { OptionsGLA2H } from './arguments/interfaces/gla2h.arguments.interface';
 
 const execAsync = promisify(exec)
 
+export interface gla2h_Response {
+    stdout?: string;
+    stderr?: string;
+}
+
 /**
  * Provider for hashing and validating passwords using `argon2` and `gla2h`.
  * Intended for authentication services and persisting secrets. 
@@ -23,16 +28,16 @@ export class ARGON2_GLA2H_PROVIDER {
      * @param gla2h_options (OptionsGLA2H) Arguments to pass to gla2h cli
      * @returns Map { 'stdout' => string, 'stderr' => string }
      */
-    async GLA2H_exec(stdin: string, gla2h_options: OptionsGLA2H): Promise<Map<string, string>> {
+    async GLA2H_exec(stdin: string, gla2h_options: OptionsGLA2H): Promise<gla2h_Response> {
         const {stdout, stderr} = await execAsync(
             `${gla2h_options.path} '${stdin}' ${gla2h_options.timed} ${gla2h_options.benchmark} ` +
             `${gla2h_options.memcost} ${gla2h_options.passes} ${gla2h_options.threads}`
         ).catch((err) => { throw err; })
 
-        return new Map([
-            ['stdout', stdout],
-            ['stderr', stderr],
-        ]);
+        return {
+            stdout: stdout,
+            stderr: stderr
+        };
     }
     
     /**
@@ -46,8 +51,8 @@ export class ARGON2_GLA2H_PROVIDER {
     async passwordHash(pw: string, gla2h_options: OptionsGLA2H): Promise<string> { 
         return await this.GLA2H_exec(pw, gla2h_options)
             .then((res) => {
-                if(res.get('stderr') !== ''){ throw new Error(res.get('stderr')) }
-                else { return res.get('stdout'); }
+                if(res.stderr !== ''){ throw new Error(res.stderr) }
+                else { return res.stdout; }
             })
             .catch((err) => { throw err; })
 
@@ -60,7 +65,7 @@ export class ARGON2_GLA2H_PROVIDER {
      * @param hash (string) hash for matching
      * @returns (bool) pass or fail for password validation
      */
-    async validateAgainstHash(norm: string, hash: string): Promise<boolean> { 
-        return await argon2.verify(hash, `'${norm}'`); 
+    async validateAgainstHash(hash: string, norm: string): Promise<boolean> { 
+        return await argon2.verify(hash, norm); 
     }
 }

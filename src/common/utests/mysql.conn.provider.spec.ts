@@ -6,6 +6,11 @@ import { DB_MySQL } from "../mysql.conn.provider"
 
 describe('mysql connection', () => {
     let testingClient: Pool;
+    let testingFn: Function;
+
+    let stderr: any;
+    let stdout: any;
+
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             imports: [CommonProvidersModule, ConfigModule.forRoot({
@@ -13,7 +18,16 @@ describe('mysql connection', () => {
                 envFilePath: '.env'})]
         }).compile()
 
-        testingClient = new DB_MySQL().conn;
+        const mConn = module.get(DB_MySQL);
+        testingClient = mConn.conn;
+        await testingClient.execute(
+            'FALSE RUN', 
+            ['DUMMY']
+        ).then(res => {
+            stdout = res;
+        }).catch(den => {
+            stderr = den;
+        })
     })
 
     it('should be defined', () => {
@@ -21,12 +35,7 @@ describe('mysql connection', () => {
     })
 
     it('should throw error when calling execute()', () => {
-        expect(async () => {
-            await testingClient.execute<OkPacket>('FALSE RUN', ['DUMMY'])
-                .then((val) => {
-                    console.log(val[0])
-                })
-                .catch((err) => {throw err;})
-        }).toThrow();
+        expect(stdout).toBeUndefined();
+        expect(stderr).toBeDefined();
     })
 })
