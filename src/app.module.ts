@@ -4,7 +4,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CommentsModule } from './comments/comments.module';
 import { CommonProvidersModule } from './common/common.providers.module';
-import { ENV_PATHS } from './paths.env.constants';
 import { ThreadsModule } from './threads/threads.module';
 import { UsersModule } from './users/users.module';
 
@@ -13,11 +12,7 @@ import { UsersModule } from './users/users.module';
     ThreadsModule, 
     UsersModule, 
     CommentsModule, 
-    CommonProvidersModule, 
-    ConfigModule.forRoot({
-      isGlobal: true,
-      envFilePath: ENV_PATHS,
-    })
+    CommonProvidersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -2,7 +2,6 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { ARGON2_GLA2H_PROVIDER, gla2h_Response } from "../hash.provider";
 import { gla2h_Args } from "../arguments/gla2h.arguments";
 import { OptionsGLA2H } from "../arguments/interfaces/gla2h.arguments.interface";
-import * as argon2 from "argon2"
 
 describe('gla2h provider', () => {
     let gla2h_client: ARGON2_GLA2H_PROVIDER;

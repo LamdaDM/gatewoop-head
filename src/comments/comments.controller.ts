@@ -17,7 +17,7 @@ export class CommentsController{
         ) THREAD_ID: number,
         @Body() DTO: CreateCommentDTO,
     ){
-        return await this.CreateComment(THREAD_ID, DTO);
+        return await this.commentsService.addCommentToExistingThread(THREAD_ID, DTO);
     }
 
     @UseGuards(JwtAuthGuard)

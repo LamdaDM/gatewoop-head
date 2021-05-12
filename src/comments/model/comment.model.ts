@@ -4,7 +4,6 @@
  * @field parent_thread_id Int
  * @field parent_comment_id Int
  * @field alias String
- * @field origin_hidden Boolean
  * @field comment_title String
  * @field content String
  * @field timestamp DateTime(ISO-8601)

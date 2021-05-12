@@ -12,7 +12,6 @@ export class CommentsRepository extends HelperRepository {
     private readonly client = this.connection_mysql.conn;
 
     /**
-     * 
      * @param COMMENT_ID 
      * @param DTO 
      * @returns Information package on updated rows. 
