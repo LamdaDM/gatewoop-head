@@ -6,7 +6,6 @@ import { LocalAuthGuard } from './auth/local/local.auth-guard';
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
     private readonly authService: AuthService,
   ) {}
 

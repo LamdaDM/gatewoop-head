@@ -1,0 +1,58 @@
+version: '3.7'
+
+services: 
+    main:
+        container_name: gw_ext
+        build:
+            context: .
+            target: development
+            dockerfile: ./Dockerfile
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        ports:
+            - 3400:3400
+            - 9229:9229
+        command: npm run start:dev
+        networks:
+            - gw_netw
+        depends_on: 
+            - redis
+            - mysql
+            - servegla2h
+        restart: unless-stopped
+    redis:
+        container_name: redis
+        image: redis:6-alpine
+        networks:
+            - gw_netw
+    mysql:
+        container_name: mysql
+        image: mysql:8
+        networks:
+            - gw_netw
+        ports:
+            - 3300:3306
+        volumes:
+            - /var/lib/mysql
+        environment: 
+            - MYSQL_ROOT_PASSWORD=secret
+    servegla2h:
+        container_name: servegla2h
+        build:
+            context: .
+            target: sgi
+            dockerfile: ./servegla2h/Dockerfile
+        volumes:
+            - .:/usr/src/servegla2h
+        networks:
+            - gw_netw
+        command: go run servegla2h.go
+        environment:
+            - PORT=2000
+            - HOST=3300
+        ports:
+            - 3300:2000
+        restart: unless-stopped
+networks:
+    gw_netw:

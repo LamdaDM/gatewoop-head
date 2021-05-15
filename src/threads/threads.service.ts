@@ -8,7 +8,6 @@ import { ThreadsRepository } from './repositories/threads.repository';
 export class ThreadsService {
   constructor(
     private threadsRepository: ThreadsRepository, 
-    private commentsRepository: CommentsRepository,
   ){}
   
 }
