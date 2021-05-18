@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { createConnection, Socket } from "net";
 import * as argon2 from "argon2";
-import { TCPClient } from "../../lib/tcp-client";
+import { TCPClient } from "../../../lib/tcp/tcp-client";
 import { servegla2h_Args } from "./tcp-servegla2h.arguments";
 
 /**

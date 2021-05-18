@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { MySQLConnProvider } from "src/common/mysql/mysql.provider";
+import { MySQLConnProvider } from "src/common/providers/mysql/mysql.provider";
 
 
 @Injectable()

@@ -1,8 +1,8 @@
 import { ConfigModule } from "@nestjs/config"
 import { Test, TestingModule } from "@nestjs/testing"
 import { OkPacket, Pool } from "mysql2/promise"
-import { CommonProvidersModule } from "../common.providers.module"
-import { MySQLConnProvider } from "../mysql/mysql.provider"
+import { CommonProvidersModule } from "../../common.providers.module"
+import { MySQLConnProvider } from "./mysql.provider"
 
 describe('mysql connection', () => {
     let testingClient: Pool;

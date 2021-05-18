@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import { HashProvider } from "src/common/hash/hash.provider";
+import { HashProvider } from "src/common/providers/hash/hash.provider";
 
 import { UsersInternalService } from "src/users/services/users.internal.service";
 
