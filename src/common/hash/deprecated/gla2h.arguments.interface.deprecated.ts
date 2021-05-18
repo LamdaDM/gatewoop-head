@@ -1,18 +1,12 @@
+/**
+ * @deprecated
+ */
 export interface OptionsGLA2H {
-    /**
-     * Path to the gla2h script.
-     */
+    
     path: string;
 
-    /**
-     * Flag for timer to run or not. 
-     * NOTE: NEEDS TO BE OFF FOR UNIT TEST.
-     */
     timed: string;
 
-    /**
-     * Flag for benchmark (268 it)
-     */
     benchmark: string;
 
     /**
@@ -29,4 +23,14 @@ export interface OptionsGLA2H {
      * Amount of threads given to thread pool.
      */
     threads: number;
+
+    /**
+     * Host address for servegla2h tcp server.
+     */
+    host: string;
+
+    /**
+     * Target port for servegla2h tcp server.
+     */
+    port: number;
 }

@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { OkPacket, RowDataPacket } from "mysql2";
-import { DB_MySQL } from "src/common/mysql.conn.provider";
+import { MySQLConnProvider } from "src/common/mysql/mysql.provider";
 import { HelperRepository } from "src/helpers/helper.repository";
 import { ChangeFollowerDTO } from "../dto/change-follower.dto";
 import { CreateUserDTO } from "../dto/create-user.dto";
@@ -13,7 +13,7 @@ import { UpdateDisplayNameDTO } from "../dto/update_display_name.dto";
  */
 @Injectable()
 export class UsersRepository extends HelperRepository{
-    constructor(private readonly connection_mysql: DB_MySQL){ super(); }
+    constructor(private readonly connection_mysql: MySQLConnProvider){ super(); }
     private readonly client = this.connection_mysql.conn;
 
     /**

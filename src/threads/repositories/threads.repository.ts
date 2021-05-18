@@ -1,9 +1,10 @@
 import { Injectable } from "@nestjs/common";
-import { DB_MySQL } from "src/common/mysql.conn.provider";
+import { MySQLConnProvider } from "src/common/mysql/mysql.provider";
+
 
 @Injectable()
 export class ThreadsRepository{
-    constructor(private connection_mysql: DB_MySQL){}
+    constructor(private connection_mysql: MySQLConnProvider){}
     private readonly client = this.connection_mysql.conn;
     
 }

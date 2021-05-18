@@ -3,10 +3,10 @@ import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
 import helmet from 'helmet'
-import { helmet_Args } from './common/arguments/helmet.arguments';
+import { helmet_Args } from './common/security-policies/helmet/helmet.arguments';
 import fastifySession from 'fastify-session';
 import fastifyCookie from 'fastify-cookie'
-import { sessionStore_Args } from './common/arguments/session-store.arguments';
+import { sessionStore_Args } from './common/session-store/session-store.arguments';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
