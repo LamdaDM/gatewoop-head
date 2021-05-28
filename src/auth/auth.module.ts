@@ -1,8 +1,7 @@
 import { Module } from "@nestjs/common";
 import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
-import { jwt_Secret } from "src/common/arguments/jwt.arguments";
-import { UsersInternalService } from "src/users/services/users.internal.service";
+import { jwt_Secret } from "src/common/lib/auth/jwt/jwt.arguments";
 import { UsersModule } from "src/users/users.module";
 import { AuthService } from "./auth.service";
 import { JwtStrategy } from "./jwt/jwt.strategy";

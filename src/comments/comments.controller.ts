@@ -1,4 +1,4 @@
-import { Body, Controller, HttpStatus, Param, ParseIntPipe, Post, UseGuards, UsePipes } from "@nestjs/common";
+import { Body, Controller, HttpStatus, Param, ParseIntPipe, Post, UseGuards } from "@nestjs/common";
 import { JwtAuthGuard } from "src/auth/jwt/jwt.auth-guard";
 import { CommentsService } from "./comments.service";
 import { CreateCommentDTO } from "./dto/create-comment.dto";
@@ -17,7 +17,7 @@ export class CommentsController{
         ) THREAD_ID: number,
         @Body() DTO: CreateCommentDTO,
     ){
-        return await this.commentsService.addCommentToExistingThread(THREAD_ID, DTO);
+        return await this.commentsService.addCommentToExistingThread(DTO);
     }
 
     @UseGuards(JwtAuthGuard)

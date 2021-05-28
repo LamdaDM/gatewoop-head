@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, MaxLength, MinLength } from "class-validator";
+import { IsNotEmpty, MaxLength, MinLength } from "class-validator";
 import { Comment } from "../model/comment.model";
 
 export class EditCommentDTO implements Comment {
