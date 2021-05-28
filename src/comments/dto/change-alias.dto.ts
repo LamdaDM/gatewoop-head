@@ -1,4 +1,4 @@
-import { MinLength, MaxLength } from "class-validator";
+import { MaxLength } from "class-validator";
 import { Comment } from "../model/comment.model";
 
 export class ChangeAliasDTO implements Comment {

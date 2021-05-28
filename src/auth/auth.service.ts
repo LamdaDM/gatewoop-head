@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { JwtService } from "@nestjs/jwt";
+import { FastifyRequest } from "fastify";
 import { HashProvider } from "src/common/providers/hash/hash.provider";
-
 import { UsersInternalService } from "src/users/services/users.internal.service";
 
 @Injectable()
@@ -9,7 +8,6 @@ export class AuthService {
     constructor(
         private readonly usersService: UsersInternalService,
         private readonly hashService: HashProvider,
-        private readonly jwtService: JwtService
     ){}
 
     async validate(identification: string, pwInput: string) { 
@@ -21,8 +19,11 @@ export class AuthService {
         } return null;
     }
 
-    async login(user: any){
-        const payload = { user: user.username, sub: user.userID };
-        return { access_token: this.jwtService.sign(payload) };
+    /**
+     * Sets session cookie with user credentials
+     * @param request 
+     */
+    async login(request: FastifyRequest){
+        const userID = request.session.get('userid')
     }
 }

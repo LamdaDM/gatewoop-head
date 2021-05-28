@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { OkPacket, ResultSetHeader, RowDataPacket } from "mysql2";
+import { OkPacket } from "mysql2";
 import { MySQLConnProvider } from "src/common/providers/mysql/mysql.provider";
 import { HelperRepository } from "src/helpers/helper.repository";
 import { ChangeAliasDTO } from "../dto/change-alias.dto";
