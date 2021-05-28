@@ -1,7 +1,16 @@
-import { createConnection, Socket } from "net";
+import { Socket } from "net";
 
+/**
+ * @deprecated
+ */
 export class TCPClient {
 
+    /**
+     * @deprecated
+     * @param message 
+     * @param socket 
+     * @returns Server response
+     */
     static call(message: string, socket: Socket): Promise<Buffer> {
 
         return new Promise((resolve, reject) => {
