@@ -1,5 +1,5 @@
 import { Test, TestingModule } from "@nestjs/testing"
-import { TCPClientService } from "../tcp/tcp-client.service"
+import { TCPClientService } from "../../tcp/tcp-client.service"
 import { TrunkerLogger } from "./trunker.logger";
 
 describe('logging to trunker', () => {

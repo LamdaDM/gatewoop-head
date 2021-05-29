@@ -6,8 +6,7 @@ import { MySQLConnProvider } from "./mysql.provider"
 
 describe('mysql connection', () => {
     let testingClient: Pool;
-    let testingFn: Function;
-
+    
     let stderr: any;
     let stdout: any;
 

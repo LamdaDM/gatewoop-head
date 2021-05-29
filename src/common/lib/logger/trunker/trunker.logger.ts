@@ -1,6 +1,6 @@
 import { LoggerService } from "@nestjs/common";
-import { TCPClientService } from "../tcp/tcp-client.service";
-import { trunker_Args } from "./trunker.arguments";
+import { trunker_Args } from "../../../secret-args/arguments.priv";
+import { TCPClientService } from "../../tcp/tcp-client.service";
 
 export class TrunkerLogger implements LoggerService {
     constructor(private tcpClientService: TCPClientService){}

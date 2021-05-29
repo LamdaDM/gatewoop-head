@@ -55,8 +55,8 @@ export class UsersRepository extends HelperRepository{
      * @param IDEN_NAME 
      * @returns One row of key-value pairs: `user_id`, `iden_name`, `password`
      */
-    async selectUserCredentialsByName(IDEN_NAME: string): Promise<RowDataPacket[]> {
-        const [rows] = await this.client.execute<RowDataPacket[]>(
+    async selectUserCredentialsByName(IDEN_NAME: string): Promise<RowDataPacket[][]> {
+        const [rows] = await this.client.execute<RowDataPacket[][]>(
             'SELECT user_id, iden_name, password ' +
             'FROM users ' +
             'WHERE iden_name = ?;',

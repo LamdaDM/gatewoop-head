@@ -1,14 +1,7 @@
-import { Injectable } from "@nestjs/common";
-import { TCPServegla2h } from "./tcp-servegla2h/tcp-servegla2h";
+import * as argon2 from 'argon2';
 
-@Injectable()
-export class HashProvider{
-
-    async hash(password: string): Promise<string> {
-        return await TCPServegla2h.passwordHashTCP(password);
-    }
-
-    async validate(hash: string, norm: string): Promise<boolean> {
-        return await TCPServegla2h.validateAgainstHash(hash, norm);
+export class HashService {
+    async validateAgainstHash(hash: string, norm: string): Promise<boolean> {
+        return await argon2.verify(hash, norm);
     }
 }

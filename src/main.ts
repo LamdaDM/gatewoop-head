@@ -2,12 +2,11 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
-import { helmet_Args } from './common/lib/security-policies/helmet/helmet.arguments';
 import fastifySession from 'fastify-session';
 import fastifyCookie from 'fastify-cookie'
 import { fastifyHelmet } from 'fastify-helmet';
-import { sessionStore_Args } from './common/lib/session-store/session-store.arguments';
-import { validationPipe_Args } from './common/lib/validation-pipe/validation-pipe.arguments';
+import { validationPipe_Args } from './common/lib/validation-pipe/validation-pipe.arguments.pub';
+import { sessionStore_Args, helmet_Args } from './common/secret-args/arguments.priv';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(

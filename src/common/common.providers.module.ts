@@ -1,12 +1,12 @@
-import { CacheModule as REDIS_PROVIDER, Global, Module } from "@nestjs/common";
+import { CacheModule, Global, Module } from "@nestjs/common";
 import { MySQLConnProvider } from "./providers/mysql/mysql.provider";
-import { cache_Args } from "./lib/cache/cache.arguments"
-import { HashProvider } from "./providers/hash/hash.provider";
+import { HashService } from "./providers/hash/hash.provider";
+import { caching_Args } from "./secret-args/arguments.priv";
 
 @Global()
 @Module({
-    imports:[REDIS_PROVIDER.register({ redisOptions: cache_Args})],
-    providers: [HashProvider, MySQLConnProvider],
-    exports: [HashProvider, MySQLConnProvider, REDIS_PROVIDER]
+    imports:[CacheModule.register({ redisOptions: caching_Args})],
+    providers: [HashService, MySQLConnProvider],
+    exports: [HashService, MySQLConnProvider, CacheModule]
 })
 export class CommonProvidersModule{}
