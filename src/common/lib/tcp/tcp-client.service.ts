@@ -1,6 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import { createConnection, Socket } from "node:net";
-import { resolve } from "node:path";
+import { createConnection, Socket } from "net";
 
 @Injectable()
 export class TCPClientService {
@@ -8,13 +7,12 @@ export class TCPClientService {
         return createConnection({host: host, port: port});
     }
 
-    async call(message: string, socket: Socket): Promise<boolean> {
+    async call(message: string, socket: Socket): Promise<Buffer> {
         return new Promise((resolve, reject) => {
             socket.write(Buffer.from(message, "utf-8"));
             
             socket.on('data', (data) => {
-                if (data.toString() === "OK") { resolve(true); }
-                else { resolve(false); }
+                resolve(data);
                 socket.end();
             })
             
