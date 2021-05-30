@@ -1,5 +1,5 @@
 import { FastifyRequest } from "fastify";
-import { HashService } from "src/common/providers/hash/hash.provider";
+import { HashService } from "src/common/providers/hash/hash.service";
 import { UserProfileFull, UsersInternalService } from "src/users/services/users.internal.service";
 
 export class AuthService {

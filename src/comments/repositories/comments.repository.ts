@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { OkPacket } from "mysql2";
-import { MySQLConnProvider } from "src/common/providers/mysql/mysql.provider";
+import { MySQLConnectionService } from "src/common/providers/mysql/mysql.service";
 import { HelperRepository } from "src/helpers/helper.repository";
 import { ChangeAliasDTO } from "../dto/change-alias.dto";
 import { CreateCommentDTO } from "../dto/create-comment.dto";
@@ -8,7 +8,7 @@ import { EditCommentDTO } from "../dto/edit-comment.dto";
 
 @Injectable()
 export class CommentsRepository extends HelperRepository {
-    constructor(private connection_mysql: MySQLConnProvider){ super(); }
+    constructor(private connection_mysql: MySQLConnectionService){ super(); }
     private readonly client = this.connection_mysql.conn;
 
     /**

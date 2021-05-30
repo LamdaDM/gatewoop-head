@@ -2,7 +2,7 @@ import { ConfigModule } from "@nestjs/config"
 import { Test, TestingModule } from "@nestjs/testing"
 import { OkPacket, Pool } from "mysql2/promise"
 import { CommonProvidersModule } from "../../common.providers.module"
-import { MySQLConnProvider } from "./mysql.provider"
+import { MySQLConnectionService } from "./mysql.service"
 
 describe('mysql connection', () => {
     let testingClient: Pool;
@@ -17,7 +17,7 @@ describe('mysql connection', () => {
                 envFilePath: '.env'})]
         }).compile()
 
-        const mConn = module.get(MySQLConnProvider);
+        const mConn = module.get(MySQLConnectionService);
         testingClient = mConn.conn;
         await testingClient.execute(
             'FALSE RUN', 
